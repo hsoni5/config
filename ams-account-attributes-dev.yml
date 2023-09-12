@@ -1,0 +1,55 @@
+# Log level
+# Log level
+logging:
+  level:
+    root: DEBUG
+
+server:
+  port: ${server-port:8082}
+
+management:
+    endpoints:
+      web:
+        exposure:
+          include: info,health,auditevents,metrics,httptrace,prometheus
+        base-path: /management/
+    endpoint:
+      health:
+        show-details: always
+# Log level
+spring:
+  main:
+    banner_mode: 'OFF'
+    web-application-type: reactive
+  security:
+    oauth2:
+      client:
+        provider:
+          ping:
+            token-uri: https://enterprisestssit.standardbank.co.za/as/token.oauth2
+        registration:
+          ping:
+            authorization-grant-type: client_credentials
+            client-id: "c0f962c0-c7aa-447b-a641-7f0aaa4a5e3f"
+            client-secret: "S3cr3t-09dd7-788dd"
+            provider: ping
+
+ams-ping-auth:
+  client-ids[0]: "c0f962c0-c7aa-447b-a641-7f0aaa4a5e3f"
+  token-uri: "https://enterprisestssit.standardbank.co.za/as/token.oauth2"
+  issuer-uri: "https://enterprisestssit.standardbank.co.za"
+  jwk-set-uri: "https://enterprisestssit.standardbank.co.za/ext/sbg/customer/oauth/jwks"
+
+isw-api-service:
+  api-base-url: http://dfmoapjbs1v.standardbank.co.za:10080
+  response-timeout: 10
+
+account-locator-api-service:
+  api-base-url: https://sit-gateway.apinp.standardbank.co.za/sit/sit/account-locator
+  response-timeout: 10
+  client-id: 9b70c362a5bcc083bd03a712743417f8
+  client-secret: 8c028265c850d1ddcf82c8d37c4a27fb
+
+account:
+  service:
+    awaiting-timeout: 100
